@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GigShield AI | Protect Your Hustle</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#001f3d",
+                        "accent-teal": "#2dd4bf",
+                        "accent-purple": "#a855f7",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1923",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>.glass-card {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 20px 40px -15px rgba(0, 31, 61, 0.15)
+    }
+.gradient-text {
+    background: linear-gradient(135deg, #2dd4bf 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent
+    }
+.hero-gradient {
+    background: linear-gradient(180deg, rgba(245, 247, 248, 0) 0%, rgba(245, 247, 248, 0.4) 60%, #f5f7f8 100%)
+    }
+@keyframes fade-slide-in {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+        } 100% {
+        opacity: 1;
+        transform: translateY(0);
+        }
+    }
+@keyframes image-entrance {
+    0% {
+        opacity: 0;
+        transform: scale(0.98) translateY(10px);
+        } 100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        }
+    }
+.animate-fade-in {
+    animation: fade-slide-in 1.2s cubic-bezier(0.21, 0.6, 0.35, 1) forwards
+    }
+.animate-image-entrance {
+    animation: image-entrance 1.6s cubic-bezier(0.21, 0.6, 0.35, 1) forwards
+    }
+.delay-100 { animation-delay: 100ms }
+.delay-200 { animation-delay: 200ms }
+.delay-300 { animation-delay: 300ms }
+.delay-400 { animation-delay: 400ms }
+.hover-lift {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1)
+    }
+.hover-lift:hover {
+    transform: translateY(-6px);
+    }
+.cta-premium-hover {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+.cta-premium-hover::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+    transform: scale(0);
+    transition: transform 0.6s ease-out;
+    }
+.cta-premium-hover:hover::after {
+    transform: scale(1);
+    }
+.cta-premium-hover:hover {
+    box-shadow: 0 0 25px rgba(45, 212, 191, 0.4);
+    }</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-primary">
+<div class="relative min-h-screen flex flex-col">
+<!-- Navigation -->
+<nav class="sticky top-0 z-50 bg-background-light/80 backdrop-blur-md border-b border-primary/5">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="bg-primary p-1.5 rounded-lg">
+<span class="material-symbols-outlined text-white text-2xl">shield_with_heart</span>
+</div>
+<span class="text-xl font-extrabold tracking-tight text-primary">GigShield AI</span>
+</div>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-sm font-semibold hover:text-accent-teal transition-colors" href="#">Home</a>
+<a class="text-sm font-semibold hover:text-accent-teal transition-colors" href="#">Dashboard</a>
+<a class="text-sm font-semibold hover:text-accent-teal transition-colors" href="#">Claims</a>
+<a class="text-sm font-semibold hover:text-accent-teal transition-colors" href="#">Analytics</a>
+<a class="text-sm font-semibold hover:text-accent-teal transition-colors" href="#">Profile</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden sm:block text-sm font-bold text-primary px-4 py-2 hover:bg-primary/5 rounded-lg transition-all hover-lift">Log In</button>
+<button class="bg-primary text-white text-sm font-bold px-6 py-2.5 rounded-xl hover:shadow-lg hover:shadow-primary/20 transition-all hover-lift">Get Started</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative pt-12 lg:pt-20 pb-24 overflow-hidden">
+<div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+<div class="z-10 order-2 lg:order-1">
+<div class="inline-flex items-center gap-2 bg-white/50 border border-primary/10 rounded-full px-4 py-1.5 mb-8 animate-fade-in">
+<span class="flex h-2 w-2 rounded-full bg-accent-teal animate-pulse"></span>
+<span class="text-xs font-bold uppercase tracking-widest opacity-70">AI-Powered Protection 2.0</span>
+</div>
+<h1 class="text-5xl lg:text-7xl font-black leading-[1.1] mb-6 tracking-tight animate-fade-in delay-100">
+                        Protect your <span class="gradient-text">hustle</span> in every storm.
+                    </h1>
+<p class="text-lg lg:text-xl text-primary/70 leading-relaxed mb-10 max-w-xl animate-fade-in delay-200">
+                        Advanced AI-powered safety and earnings protection for the modern gig economy. Secure your future while you navigate the neon streets.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4 animate-fade-in delay-300">
+<button class="bg-primary text-white px-8 py-4 rounded-xl font-bold text-lg hover:scale-[1.02] transition-transform flex items-center justify-center gap-2 hover-lift cta-premium-hover">
+<span>Get Started Free</span>
+<span class="material-symbols-outlined">arrow_forward</span></button>
+<button class="border-2 border-primary/10 bg-white/50 backdrop-blur px-8 py-4 rounded-xl font-bold text-lg hover:bg-white transition-colors hover-lift">
+                            How it Works
+                        </button>
+</div>
+<!-- Social Proof -->
+<div class="mt-16 flex flex-col gap-4 animate-fade-in delay-300">
+<p class="text-sm font-bold opacity-50 uppercase tracking-widest">Trusted by 50,000+ workers from</p>
+<div class="flex flex-wrap gap-8 grayscale opacity-50 items-center">
+<span class="text-2xl font-black italic">UBER</span>
+<span class="text-2xl font-black italic">DOORDASH</span>
+<span class="text-2xl font-black italic">LYFT</span>
+<span class="text-2xl font-black italic">GRUBHUB</span>
+</div>
+</div>
+</div>
+<div class="relative order-1 lg:order-2 animate-image-entrance delay-300">
+<div class="relative w-full aspect-[4/5] rounded-[2rem] overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,31,61,0.2)] border-2 border-white/50" style="transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); cursor: default;">
+<img alt="Delivery rider in city rain" class="w-full h-full object-cover" data-alt="Anime-style delivery rider in futuristic rainy city neon lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDu7dJCsPnqRePuEHcnPMAMIzwMt1TtK8LhL6I7nS5NN84RnPVtab1egd46R8_giZgl1miEC18rOdAFdfUbFIvA0VM-yquiNjFPJByKcJpfakEoPEcXQT78QRhpRSZb_jHi7Kao3MrPERfB8pMtKGD_2hVpW-Po0GNWO14kbGVmoOF789X4dLs4-bNHzcgFZNDI-SAFGq_bCF1kMvn4uBWyOna4LdwjOcEaH8RUb8fBja_XesSqbc4XwZeD-4O8DCiiS8mvIa0if3fg"/>
+<div class="absolute inset-0 hero-gradient"></div>
+<!-- Floating Glass UI elements -->
+<div class="absolute bottom-8 left-8 right-8 glass-card p-6 rounded-2xl">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="bg-accent-teal p-2 rounded-full">
+<span class="material-symbols-outlined text-white">verified_user</span>
+</div>
+<div>
+<p class="text-xs font-bold opacity-60">Status</p>
+<p class="text-sm font-black">Active Protection</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xs font-bold opacity-60">Risk Score</p>
+<p class="text-sm font-black text-accent-teal">Low (1.2%)</p>
+</div>
+</div>
+<div class="w-full h-2 bg-primary/5 rounded-full overflow-hidden">
+<div class="w-1/3 h-full bg-gradient-to-r from-accent-teal to-accent-purple"></div>
+</div>
+</div>
+</div>
+<!-- Decorative accents -->
+<div class="absolute -top-12 -right-12 w-48 h-48 bg-accent-teal/10 blur-3xl rounded-full"></div>
+<div class="absolute -bottom-12 -left-12 w-64 h-64 bg-accent-purple/10 blur-3xl rounded-full"></div>
+</div>
+</div>
+</section>
+<!-- Features Grid -->
+<section class="py-24 bg-white">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center max-w-3xl mx-auto mb-20">
+<h2 class="text-4xl font-black mb-6">Built for the Modern Worker</h2>
+<p class="text-lg text-primary/60">We combine high-performance AI with human-centric design to ensure you're never alone on the road.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Feature 1 -->
+<div class="group p-10 rounded-[2rem] bg-background-light hover:bg-white hover:shadow-2xl hover:shadow-primary/5 transition-all border border-primary/5 hover-lift">
+<div class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-accent-teal text-3xl">analytics</span>
+</div>
+<h3 class="text-xl font-bold mb-4">Real-time Risk Analysis</h3>
+<p class="text-primary/60 leading-relaxed mb-6">Our proprietary AI monitors local traffic patterns and weather changes to calculate your safety in real-time.</p>
+<a class="inline-flex items-center gap-2 text-sm font-bold group-hover:gap-3 transition-all" href="#">
+                            Learn more <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<!-- Feature 2 -->
+<div class="group p-10 rounded-[2rem] bg-background-light hover:bg-white hover:shadow-2xl hover:shadow-primary/5 transition-all border border-primary/5 hover-lift">
+<div class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-accent-purple text-3xl">account_balance_wallet</span>
+</div>
+<h3 class="text-xl font-bold mb-4">Earnings Guarantee</h3>
+<p class="text-primary/60 leading-relaxed mb-6">Protection against sudden platform deactivations and technical glitches that prevent you from earning.</p>
+<a class="inline-flex items-center gap-2 text-sm font-bold group-hover:gap-3 transition-all" href="#">
+                            Learn more <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<!-- Feature 3 -->
+<div class="group p-10 rounded-[2rem] bg-background-light hover:bg-white hover:shadow-2xl hover:shadow-primary/5 transition-all border border-primary/5 hover-lift">
+<div class="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">emergency_share</span>
+</div>
+<h3 class="text-xl font-bold mb-4">Instant Emergency</h3>
+<p class="text-primary/60 leading-relaxed mb-6">A single tap connects you to emergency services while broadcasting your GPS location to our rapid response team.</p>
+<a class="inline-flex items-center gap-2 text-sm font-bold group-hover:gap-3 transition-all" href="#">
+                            Learn more <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Social Proof Stats -->
+<section class="py-20 border-y border-primary/5">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+<div>
+<p class="text-4xl font-black mb-2">50k+</p>
+<p class="text-sm font-bold uppercase tracking-widest opacity-50">Active Members</p>
+</div>
+<div>
+<p class="text-4xl font-black mb-2">$12M+</p>
+<p class="text-sm font-bold uppercase tracking-widest opacity-50">Earnings Protected</p>
+</div>
+<div>
+<p class="text-4xl font-black mb-2">4.9/5</p>
+<p class="text-sm font-bold uppercase tracking-widest opacity-50">App Store Rating</p>
+</div>
+<div>
+<p class="text-4xl font-black mb-2">15ms</p>
+<p class="text-sm font-bold uppercase tracking-widest opacity-50">AI Response Time</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24">
+<div class="max-w-5xl mx-auto px-6">
+<div class="relative overflow-hidden bg-primary rounded-[3rem] p-12 lg:p-20 text-center text-white">
+<div class="absolute top-0 right-0 w-64 h-64 bg-accent-teal/20 blur-[100px]"></div>
+<div class="absolute bottom-0 left-0 w-64 h-64 bg-accent-purple/20 blur-[100px]"></div>
+<h2 class="text-4xl lg:text-5xl font-black mb-8 relative z-10">Ready to secure your gig?</h2>
+<p class="text-xl opacity-80 mb-12 max-w-2xl mx-auto relative z-10">Join thousands of drivers who have found peace of mind with GigShield AI. Start your 14-day free trial today.</p>
+<div class="flex flex-col sm:flex-row gap-6 justify-center relative z-10">
+<button class="bg-white text-primary px-10 py-5 rounded-2xl font-bold text-xl hover:scale-105 transition-transform hover-lift">Get Started Now</button>
+<button class="bg-primary/20 backdrop-blur-md border border-white/20 px-10 py-5 rounded-2xl font-bold text-xl hover:bg-primary/40 transition-all hover-lift">Talk to Sales</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-white pt-24 pb-12">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-2 lg:grid-cols-5 gap-12 mb-20">
+<div class="col-span-2">
+<div class="flex items-center gap-2 mb-8">
+<div class="bg-primary p-1 rounded-lg">
+<span class="material-symbols-outlined text-white text-xl">shield_with_heart</span>
+</div>
+<span class="text-xl font-extrabold tracking-tight text-primary">GigShield AI</span>
+</div>
+<p class="text-primary/60 max-w-sm mb-8 leading-relaxed">
+                            Protecting the backbone of the modern economy with cutting-edge artificial intelligence and human-centric safety nets.
+                        </p>
+</div>
+<div>
+<h4 class="font-bold mb-6">Product</h4>
+<ul class="space-y-4 text-sm font-medium text-primary/60">
+<li><a class="hover:text-primary transition-colors" href="#">Safety Console</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Earnings Guard</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Insurance Sync</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">API Access</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6">Company</h4>
+<ul class="space-y-4 text-sm font-medium text-primary/60">
+<li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Press Kit</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6">Legal</h4>
+<ul class="space-y-4 text-sm font-medium text-primary/60">
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Security</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-12 border-t border-primary/5 flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="text-sm text-primary/40">© 2024 GigShield AI Inc. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="text-primary/40 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-primary/40 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+<a class="text-primary/40 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">brand_awareness</span></a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

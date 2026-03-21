@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#001f3d",
+                        "accent-teal": "#14b8a6",
+                        "accent-purple": "#8b5cf6",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1923",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Payout Successful - GigShield AI</title>
+<style>
+        @keyframes subtle-pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 20px 10px rgba(20, 184, 166, 0); }
+        }
+        @keyframes slide-up-fade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-subtle-pulse {
+            animation: subtle-pulse 2s infinite ease-in-out;
+        }
+        .animate-entrance {
+            animation: slide-up-fade 0.6s ease-out forwards;
+        }
+    </style></head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 px-6 py-4 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-50 md:px-12">
+<div class="flex items-center gap-3">
+<div class="size-8 flex items-center justify-center bg-primary rounded-lg text-white">
+<span class="material-symbols-outlined text-2xl">shield_with_heart</span>
+</div>
+<h2 class="text-primary dark:text-slate-100 text-xl font-bold leading-tight tracking-tight">GigShield AI</h2>
+</div><nav class="hidden md:flex items-center gap-8 ml-12">
+<a class="text-primary dark:text-white font-bold text-sm border-b-2 border-primary dark:border-white pb-1 tracking-wide" href="#">Dashboard</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium text-sm hover:text-primary dark:hover:text-white transition-colors tracking-wide" href="#">Claims</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium text-sm hover:text-primary dark:hover:text-white transition-colors tracking-wide" href="#">Insurance</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium text-sm hover:text-primary dark:hover:text-white transition-colors tracking-wide" href="#">Profile</a>
+</nav>
+<div class="flex gap-2">
+<button class="flex size-10 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex size-10 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center justify-center px-4 py-12 max-w-4xl mx-auto w-full">
+<div class="relative mb-8">
+<div class="size-32 rounded-full bg-gradient-to-br from-accent-teal to-accent-purple flex items-center justify-center shadow-lg shadow-accent-teal/20 animate-subtle-pulse">
+<span class="material-symbols-outlined text-white text-6xl font-bold">check</span>
+</div>
+<div class="absolute -inset-4 bg-accent-teal/10 rounded-full blur-2xl -z-10"></div>
+</div>
+<div class="text-center mb-10">
+<h1 class="text-slate-900 dark:text-white text-3xl md:text-4xl font-bold mb-3">₹600 Payout Successful</h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg max-w-md mx-auto">Successfully transferred to your registered UPI account.</p>
+</div>
+<div class="w-full max-w-md mb-10">
+<div class="bg-white/40 dark:bg-slate-800/40 backdrop-blur-xl border border-white/20 dark:border-slate-700/50 rounded-xl p-6 shadow-xl overflow-hidden relative group animate-entrance">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-6xl">receipt_long</span>
+</div>
+<p class="text-primary dark:text-accent-teal text-sm font-bold uppercase tracking-widest mb-4">Payout Details</p>
+<div class="space-y-4">
+<div class="flex flex-col">
+<span class="text-slate-400 dark:text-slate-500 text-xs font-medium uppercase">Claim ID</span>
+<span class="text-slate-800 dark:text-slate-200 font-semibold text-lg">#GS-99281</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-400 dark:text-slate-500 text-xs font-medium uppercase">Transaction ID</span>
+<span class="text-slate-800 dark:text-slate-200 font-mono text-sm">TXN123456789</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-400 dark:text-slate-500 text-xs font-medium uppercase">Payout Destination</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-accent-teal">account_balance_wallet</span>
+<span class="text-slate-800 dark:text-slate-200 font-medium">Registered UPI ID</span>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-200/50 dark:border-slate-700/50 flex items-center justify-between">
+<span class="text-slate-500 dark:text-slate-400 text-sm italic">Verification Status</span>
+<span class="flex items-center gap-1 text-green-600 dark:text-green-400 text-sm font-bold">
+<span class="material-symbols-outlined text-sm">verified</span> Verified
+                            </span>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 w-full max-w-md">
+<button class="flex-1 bg-primary text-white h-14 rounded-xl font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined">dashboard</span>
+                        Return to Dashboard
+                    </button>
+<button class="flex-1 bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-200 h-14 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-slate-300 dark:hover:bg-slate-700 transition-all hover:scale-[1.02] active:scale-[0.98] transition-transform hover:shadow-md">
+<span class="material-symbols-outlined">history</span>
+                        View History
+                    </button>
+</div>
+<div class="mt-12 text-center">
+<p class="text-slate-400 dark:text-slate-500 text-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">help</span>
+                        Need help with your payout? <a class="text-primary dark:text-accent-teal font-semibold underline underline-offset-4" href="#">Contact Support</a>
+</p>
+</div>
+</main>
+<footer class="py-8 px-6 text-center border-t border-slate-200 dark:border-slate-800">
+<p class="text-slate-400 dark:text-slate-500 text-xs">© 2024 GigShield AI. All payouts are secured and verified by our automated claim engine.</p>
+</footer>
+</div>
+</div>
+</body></html>

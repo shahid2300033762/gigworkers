@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary-500: #6366f1;
+    --color-primary-600: #4f46e5;
+    --font-sans: var(--font-inter);
+    --color-primary: #001f3d;
+    --color-accent-teal: #2dd4bf;
+    --color-accent-purple: #a855f7;
+    --color-background-light: #f5f7f8;
+    --color-background-dark: #0f1923;
+    --font-display: "Public Sans", sans-serif;
+}
+
+@layer base {
+    body {
+        background-color: #020617;
+        /* slate-950 */
+        color: #f8fafc;
+        /* slate-50 */
+    }
+}
+
+.glass-card {
+    background: rgba(30, 41, 59, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* CSS from frontend/src/app/stitch-page.html */
+.glass-card {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 20px 40px -15px rgba(0, 31, 61, 0.15)
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #2dd4bf 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent
+}
+
+.hero-gradient {
+    background: linear-gradient(180deg, rgba(245, 247, 248, 0) 0%, rgba(245, 247, 248, 0.4) 60%, #f5f7f8 100%)
+}
+/* Stitch Landing Page Animations */
+@keyframes fade-slide-in {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes image-entrance {
+    0% {
+        opacity: 0;
+        transform: scale(0.98) translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fade-slide-in 1.2s cubic-bezier(0.21, 0.6, 0.35, 1) forwards;
+}
+
+.animate-image-entrance {
+    animation: image-entrance 1.6s cubic-bezier(0.21, 0.6, 0.35, 1) forwards;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+
+.hover-lift {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-lift:hover {
+    transform: translateY(-6px);
+}
+
+.cta-premium-hover {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cta-premium-hover::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    transform: scale(0);
+    transition: transform 0.6s ease-out;
+}
+
+.cta-premium-hover:hover::after {
+    transform: scale(1);
+}
+
+.cta-premium-hover:hover {
+    box-shadow: 0 0 25px rgba(45, 212, 191, 0.4);
+}
+
+/* CSS from frontend/src/app/dashboard/stitch-page.html */
+
+body {
+    font-family: 'Public Sans', sans-serif;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+}
+
+.thin-border {
+    border: 1px solid rgba(0, 31, 61, 0.08);
+}
+
+/* CSS from frontend/src/app/onboarding/stitch-page.html */
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* CSS from frontend/src/app/claim/stitch-page.html */
+
+.rain-overlay {
+    display: none;
+}
+
+/* CSS from frontend/src/app/success/stitch-page.html */
+
+.animate-subtle-pulse {
+    animation: none;
+}
+
+.animate-entrance {
+    animation: none;
+}
+
+/* CSS from frontend/src/app/purchase/stitch-page.html */
+
+body {
+    font-family: 'Public Sans', sans-serif;
+}
+
+/* CSS from frontend/src/app/admin/stitch-page.html */
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 31, 61, 0.1);
+}
+
+.heatmap-gradient {
+    background: radial-gradient(circle at 30% 40%, rgba(239, 68, 68, 0.4) 0%, transparent 20%),
+        radial-gradient(circle at 70% 60%, rgba(239, 68, 68, 0.3) 0%, transparent 25%),
+        radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.2) 0%, transparent 40%);
+}
+
+/* CSS from frontend/src/app/dashboard/risk/stitch-page.html */
+
+.animate-gauge {
+    animation: none;
+}
+
+.transition-premium {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}

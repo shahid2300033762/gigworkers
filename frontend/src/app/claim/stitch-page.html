@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#001f3d",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1923",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>GigShield AI - Claim Automation</title>
+<style>
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes growLine {
+  from { height: 0; }
+  to { height: 100%; }
+}
+@keyframes rain {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 20% 100%; }
+}
+@keyframes pulseSubtle {
+  0%, 100% { transform: scale(1.1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+  50% { transform: scale(1.2); box-shadow: 0 0 20px 10px rgba(34, 197, 94, 0); }
+}
+.animate-step { animation: fadeInDown 0.5s ease forwards; opacity: 0; }
+.animate-line { animation: growLine 0.5s ease forwards; transform-origin: top; }
+.animate-pulse-subtle { animation: pulseSubtle 2s infinite ease-in-out; }
+.rain-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(transparent, transparent), url('https://www.transparenttextures.com/patterns/60-lines.png');
+  opacity: 0.1;
+  animation: rain 1s linear infinite;
+}
+</style></head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 py-3 lg:px-20">
+<div class="flex items-center gap-3 text-primary dark:text-slate-100">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">shield_with_heart</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">GigShield AI</h2>
+</div>
+<div class="flex flex-1 justify-end gap-4">
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-xl h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-xl h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/10" data-alt="User profile picture of a professional" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBKm8UXJx4aJUC248o0Vc4hVjIcX7TLeiwSKS2v_lBZx5CmKy4U2Sqeh_mY47iWsDQbfXhMgLCAiuEp1mkxtSIGTZS3rX5RHW1pEaZrEsD7NZ2ddCSOHV86TD5AqmtORFNHQlNI5WjLZ1wbm7zcXW6OOcYkM4LUxKdHEqXGak51FgOVZOZyxr8_Iba3ogDv9CsuM0fB4LGKNkS09SOdU4aFObMjVGTtIHKc2z210akRCG0yKqlcRx6QVSKntQUsgSskW1jkJKLE85Sr");'></div>
+</div>
+</header>
+<main class="flex-1 flex justify-center py-8 px-4 lg:px-20">
+<div class="w-full max-w-[1000px] grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Sidebar Navigation -->
+<div class="hidden lg:flex lg:col-span-3 flex-col gap-4">
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-slate-500">home</span>
+<span class="font-medium">Home</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary text-white shadow-lg shadow-primary/20" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-medium">Claims</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-slate-500">history</span>
+<span class="font-medium">History</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined text-slate-500">person</span>
+<span class="font-medium">Profile</span>
+</a>
+</nav>
+</div>
+<!-- Main Content Area -->
+<div class="lg:col-span-9 flex flex-col gap-6">
+<!-- Status Banner -->
+<div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-xl p-4 flex items-center gap-4 relative overflow-hidden"><div class="rain-overlay"></div>
+<div class="size-10 rounded-full bg-blue-100 dark:bg-blue-800 flex items-center justify-center text-blue-600 dark:text-blue-300">
+<span class="material-symbols-outlined">rainy</span>
+</div>
+<div>
+<p class="font-semibold text-blue-900 dark:text-blue-100">Heavy rain detected</p>
+<p class="text-sm text-blue-700 dark:text-blue-300">Your payout ₹600 has been triggered automatically.</p>
+</div>
+</div>
+<!-- Automated Timeline -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+<h3 class="text-lg font-bold mb-8">Parametric Trigger Process</h3>
+<div class="relative flex flex-col gap-0">
+<!-- Step 1 -->
+<div class="flex gap-6 pb-8 group animate-step" style="animation-delay: 0.2s;">
+<div class="relative flex flex-col items-center">
+<div class="z-10 flex size-10 shrink-0 items-center justify-center rounded-full text-white bg-transparent"><img alt="Rain cloud" class="size-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTR22XKKsRw6kBjaJ1NzP32s7D0e-QwlEGvNsEiItsE2KuwuisWAQv7Bq9hsOvTE68k-R6oKYgaqCrPzFGqwOG7ToqrSIkKyQF3Vf135r04U6IfVsJBPXd4dTiBG6vBxJaJh2lcJH1nlsWQ0hhskHav_qrshSgvxXqsLjpuGnyivTGnhzpgadGfb8VsPjOvKCzj6XooX0-vM9IhHEyS1zWdIbLGANUNe90CarmI9adUfK1uaheTKJJkNjw52GsgferDR7MEy2IR5Lv"/></div>
+<div class="absolute top-10 h-full w-[2px] bg-blue-500 animate-line" style="animation-delay: 0.7s;"></div>
+</div>
+<div class="flex flex-col pt-1">
+<h4 class="font-bold text-slate-900 dark:text-slate-100">Heavy Rain Detected</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400">Intensity: 45mm/hr • Location: Bangalore, 4:30 PM</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex gap-6 pb-8 group animate-step" style="animation-delay: 1.2s;">
+<div class="relative flex flex-col items-center">
+<div class="z-10 flex size-10 shrink-0 items-center justify-center rounded-full text-white bg-transparent"><img alt="API Sync" class="size-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8wLwRZycwPBhelXfB2_3KAA2LpeKvYjQVGwuSkdgHHn0yi2bhL1IxkSwA5olzYRihk1iUbtLG19b7gt9RcHbenzT9XXPf9JPcIkQBxMyebzWy6Avctbe6Zkp6r_eZOHVFlIJIbzgJp2BJIpJYVk6cdSBFieuH-woJvJagR2flPZmC-KNoJy_rHLGwSD4Gl0rHF5N5QEovFOeH0D9Zvl9QofDSbuNo5XSvHVOt5m7bJdDxETZAxHiK4-cv0duZG4xME0vChP-LYRuw"/></div>
+<div class="absolute top-10 h-full w-[2px] bg-blue-500 animate-line" style="animation-delay: 1.7s;"></div>
+</div>
+<div class="flex flex-col pt-1">
+<h4 class="font-bold text-slate-900 dark:text-slate-100">Weather API Triggered</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400">Satellite &amp; Ground station data verified</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex gap-6 pb-8 group animate-step" style="animation-delay: 2.2s;">
+<div class="relative flex flex-col items-center">
+<div class="z-10 flex size-10 shrink-0 items-center justify-center rounded-full text-white bg-transparent"><img alt="Smart Contract" class="size-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzgDiJcAgAD2Q-dlaJVtn8QFHEbwpXZRodKwSTaBhbxGqF37GJpey9MT5AwiwN3f3bWm7yK6j4nYzbwOg0p_YN2wPQRz_d52UMYPp-i1_P4S7BmhfC-c9K_cNIO6sVslWh6LoZE5ktnBimkVAY1SbPkE7-dUv5dkpq7WA7pjHFVq4PyE86P9Da2nmWd8RSndgXZeod8zjxboHj-dYARhc88DmLMSBoRltnq0B-7YzyJrb_hylKLL9R6w8bLPz-riZZBWNUJHbLND8n"/></div>
+<div class="absolute top-10 h-full w-[2px] bg-blue-500 animate-line" style="animation-delay: 2.7s;"></div>
+</div>
+<div class="flex flex-col pt-1">
+<h4 class="font-bold text-slate-900 dark:text-slate-100">Claim Generated</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400">ID: GS-9921 • Smart Contract Executed</p>
+</div>
+</div>
+<!-- Step 4 (Active/Success) -->
+<div class="flex gap-6 group animate-step" style="animation-delay: 3.2s;">
+<div class="relative flex flex-col items-center">
+<div class="z-10 flex size-10 shrink-0 items-center justify-center rounded-full text-white shadow-lg shadow-green-500/30 bg-transparent"><img alt="Payout" class="size-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtvnwmUU_pKJTudLit5Lx-mxUc9dDMpDqN90I8Xbl64Q068xAgjkBArRExhSzusTs8srwhleUiBW-z48KoOI2hVb_fOH7myYQvtu8_TrvtgZjZx_G_24SptXkXpqzfdB0fwlFC9vdV5i_LV8J8-1FxJxshnjMpLSpbzOSq3uuUC0B4_PKgAlB5idtt45I6zFxVSIU4izqaY0RVB5u2vijLX5t95HF8VpeGfZcEDToOq8OxSfzhZFTcxrcppBuUs5jUnRYw2esU2b8K"/></div>
+</div>
+<div class="flex flex-col pt-1">
+<h4 class="font-bold text-green-600 dark:text-green-400">Payout Initiated</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400">Funds transferred to linked account</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Success Confirmation Card -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+<div class="h-48 bg-gradient-to-br from-primary to-blue-700 flex items-center justify-center relative overflow-hidden" data-alt="Abstract blue gradient background pattern" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDcsIUIp208ZQ4jipLDR5mNdHZmnqH9q_90KkydhtyvGjsUzRe4Qzt7NTpnABd5NnB9RSD9xo04AiJJXrljI8Xxoqfd52yXnWNeQ4y6JsPrXjQesV7GP8ASERBEEyTAtyQy-M7_TcakvFwO9h-U9jX8CJOmSTIqhCUoc6olj4g6sPqu1aM3yw_ENyGRcmCsyZOdF1rbzn-moHvbUyo_cqPeg3ITWPlQ1Y6W_Px8km07Cuo5nPOTXR2B5DtIca5kDohQEua36vrb-c6q");'>
+<div class="absolute inset-0 bg-primary/40 backdrop-blur-[2px]"></div>
+<div class="z-10 flex flex-col items-center">
+<div class="size-16 rounded-full bg-green-500 flex items-center justify-center text-white mb-4 scale-110 animate-pulse-subtle">
+<span class="material-symbols-outlined text-4xl">check_circle</span>
+</div>
+<h2 class="text-2xl font-bold text-white">Payment Confirmed</h2>
+</div>
+</div>
+<div class="p-8 flex flex-col items-center text-center">
+<h3 class="text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">₹600 payout successfully transferred</h3>
+<p class="text-slate-600 dark:text-slate-400 max-w-md mb-8">
+                            Based on your parametric coverage, heavy rain intensity in your working zone exceeded the threshold. The payout has been sent to your primary UPI ID.
+                        </p>
+<div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
+<button class="flex-1 max-w-xs flex items-center justify-center gap-2 rounded-xl h-12 bg-primary text-white font-bold hover:bg-primary/90 transition-all">
+<span class="material-symbols-outlined">dashboard</span>
+                                Return to Dashboard
+                            </button>
+<button class="flex-1 max-w-xs flex items-center justify-center gap-2 rounded-xl h-12 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined">receipt</span>
+                                View Payout History
+                            </button>
+</div>
+</div>
+<!-- Transaction Details Accordion-like Footer -->
+<div class="border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 p-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+<div>
+<p class="text-slate-500 dark:text-slate-500 mb-1">Transaction ID</p>
+<p class="font-mono font-medium">#TXN-88291032</p>
+</div>
+<div>
+<p class="text-slate-500 dark:text-slate-500 mb-1">Date &amp; Time</p>
+<p class="font-medium">Oct 12, 2023 • 04:35 PM</p>
+</div>
+<div>
+<p class="text-slate-500 dark:text-slate-500 mb-1">Coverage Type</p>
+<p class="font-medium text-blue-600 dark:text-blue-400">Rainfall Parametric</p>
+</div>
+<div>
+<p class="text-slate-500 dark:text-slate-500 mb-1">Status</p>
+<p class="font-medium text-green-600 flex items-center gap-1">
+<span class="size-2 rounded-full bg-green-600"></span> Completed
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Navigation Bar -->
+<div class="lg:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-6 py-3 flex justify-between items-center z-50">
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined">description</span>
+<span class="text-[10px] font-medium">Claims</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">history</span>
+<span class="text-[10px] font-medium">History</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</button>
+</div>
+</div>
+</body></html>
