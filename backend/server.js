@@ -253,7 +253,8 @@ app.get("/api/calculate-premium", async (req, res) => {
     const weatherRisk = isNonEmptyString(req.query.weather_risk) ? req.query.weather_risk.trim() : "Low";
 
     try {
-      const aiResponse = await fetch("http://localhost:8000/api/score", {
+      const aiServiceUrl = (process.env.AI_SERVICE_URL || "http://localhost:8000").replace(/\/$/, "");
+      const aiResponse = await fetch(`${aiServiceUrl}/api/score`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ city, platform, weather_risk: weatherRisk }),
