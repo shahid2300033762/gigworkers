@@ -50,7 +50,13 @@ export default function WorkerOnboarding() {
         method: "POST",
         body: JSON.stringify({ upi_id: formData.upi_id }),
       });
-      const data = await res.json();
+      
+      let data;
+      try {
+        data = await res.json();
+      } catch (jsonErr) {
+        throw new Error("Verification service is currently unreachable or returned an invalid response.");
+      }
 
       if (res.ok && data.success && data.valid) {
         setIsVerified(true);
@@ -59,10 +65,17 @@ export default function WorkerOnboarding() {
       } else {
         setIsVerified(false);
         setIsUPIValid(false);
-        setErrorMsg(data.error === "VPA_NOT_FOUND" ? "Invalid UPI ID. Please check and try again." : (data.error || "Verification failed."));
+        
+        // Use error from data if available, otherwise fallback
+        const errMsg = data.error === "VPA_NOT_FOUND" 
+          ? "Invalid UPI ID. Please check and try again." 
+          : (data.error || "Verification failed. Please try again later.");
+        
+        setErrorMsg(errMsg);
       }
-    } catch (err) {
-      setErrorMsg("Connection error during verification.");
+    } catch (err: any) {
+      console.error("UPI Verification Error:", err);
+      setErrorMsg(err.message || "Connection error during verification.");
     } finally {
       setIsVerifyingUPI(false);
     }
