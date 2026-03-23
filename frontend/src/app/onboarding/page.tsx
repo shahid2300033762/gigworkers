@@ -154,14 +154,20 @@ export default function WorkerOnboarding() {
         method: "POST",
         body: JSON.stringify(cleanedData),
       });
-      const data = await res.json();
+
+      let data;
+      try {
+        data = await res.json();
+      } catch (jsonErr) {
+        throw new Error("Registration service is currently unreachable or returned an invalid response.");
+      }
 
       if (res.ok && data.success && data.worker) {
         router.push("/dashboard");
         return;
       }
 
-      setErrorMsg(data.error || "Registration failed.");
+      setErrorMsg(data.error || "Registration failed. Please check your details and try again.");
     } catch (error: any) {
       setErrorMsg(error.message || "Registration failed.");
     } finally {
