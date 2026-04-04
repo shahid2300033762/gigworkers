@@ -1,6 +1,6 @@
-# GigShield AI
+# Vertex: Precision Algorithmic Safety
 
-GigShield AI is a comprehensive parametric insurance platform tailored specifically for gig workers (e.g., Swiggy, Zomato delivery partners). The application offers seamless onboarding, dynamic AI-based risk scoring for premiums, robust policy management, and a transparent, automated claims workflow that pays out directly when parametric triggers (like extreme weather disruptions) are met.
+Vertex is a comprehensive parametric insurance platform tailored specifically for gig workers (e.g., Swiggy, Zomato delivery partners). The application offers seamless onboarding, dynamic AI-based risk scoring for premiums, robust policy management, and a transparent, automated claims workflow that pays out directly when parametric triggers (like extreme weather disruptions) are met.
 
 ## 🚀 Key Features
 

@@ -76,7 +76,7 @@ export default function AdminAnalytics() {
               <div className="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
                 <ShieldCheck className="w-6 h-6" />
               </div>
-              <h2 className="text-primary text-xl font-black leading-tight tracking-tight">GigShield AI</h2>
+              <h2 className="text-primary text-xl font-black leading-tight tracking-tight">Vertex</h2>
             </div>
               <a className="text-primary/60 hover:text-primary text-sm font-semibold transition-colors" href="/dashboard">Dashboard</a>
               <a className="text-primary/60 hover:text-primary text-sm font-semibold transition-colors" href="/admin">Analytics</a>

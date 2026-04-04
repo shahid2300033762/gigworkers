@@ -60,7 +60,7 @@ function PolicyContent() {
               <div className="size-10 bg-primary rounded-lg flex items-center justify-center text-white shadow-sm">
                 <ShieldCheck className="w-6 h-6" />
               </div>
-              <h2 className="text-xl font-bold leading-tight tracking-tight">GigShield AI</h2>
+              <h2 className="text-xl font-bold leading-tight tracking-tight">Vertex</h2>
             </div>
             <div className="flex flex-1 justify-end gap-6">
               <div className="hidden md:flex items-center gap-6 pr-6 border-r border-slate-200 dark:border-slate-800">
@@ -173,7 +173,7 @@ function PolicyContent() {
               <div className="flex flex-wrap items-center justify-center gap-8 opacity-60">
                 <div className="flex items-center gap-2 grayscale hover:grayscale-0 transition-all">
                   <Shield className="w-4 h-4 text-sm" />
-                  <span className="text-xs font-bold uppercase tracking-widest">Secured by GigShield AI</span>
+                  <span className="text-xs font-bold uppercase tracking-widest">Secured by Vertex</span>
                 </div>
                 <div className="flex items-center gap-2 grayscale hover:grayscale-0 transition-all">
                   <BadgeCheck className="w-4 h-4 text-sm" />

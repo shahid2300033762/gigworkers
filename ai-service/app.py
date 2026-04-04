@@ -61,5 +61,47 @@ def calculate_score():
     )
 
 
+@app.route("/api/deactivation-risk", methods=["POST"])
+def analyze_deactivation_risk():
+    payload = request.get_json(silent=True) or {}
+    
+    rating = float(payload.get("rating", 4.5))
+    cancellation_rate = float(payload.get("cancellation_rate", 0.05))
+    late_deliveries = int(payload.get("late_deliveries", 0))
+    platform = payload.get("platform", "Unknown")
+
+    # Algorithm Logic (The "Opinionated" Thinking)
+    # Low rating = high risk
+    # High cancellation = high risk
+    # Platform volatility factor (e.g., Zomato is more sensitive)
+    
+    risk_factor = 0.0
+    if rating < 4.2: risk_factor += 0.4
+    elif rating < 4.5: risk_factor += 0.2
+    
+    if cancellation_rate > 0.15: risk_factor += 0.3
+    elif cancellation_rate > 0.08: risk_factor += 0.15
+    
+    if late_deliveries > 10: risk_factor += 0.2
+    
+    # Vertex Score (100 - (risk * 100))
+    vertex_score = max(0, min(100, int(100 - (risk_factor * 100))))
+    
+    risk_level = "Low"
+    if vertex_score < 40: risk_level = "Critical"
+    elif vertex_score < 70: risk_level = "Medium"
+
+    return jsonify({
+        "success": True,
+        "vertex_score": vertex_score,
+        "risk_level": risk_level,
+        "platform_volatility": "High" if platform.lower() == "zomato" else "Medium",
+        "recommendations": [
+            "Maintain rating above 4.5",
+            "Keep cancellation rate below 5%"
+        ] if risk_level != "Low" else ["Account is in excellent standing"]
+    })
+
+
 if __name__ == "__main__":
     app.run(port=8000, debug=False)

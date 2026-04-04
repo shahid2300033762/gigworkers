@@ -92,7 +92,7 @@ export default function WorkerDashboard() {
 <ShieldCheck className="w-6 h-6" />
 </div>
 <div>
-<h1 className="text-lg font-bold text-primary dark:text-white leading-tight">GigShield AI</h1>
+<h1 className="text-lg font-bold text-primary dark:text-white leading-tight">Vertex</h1>
 <p className="text-xs font-semibold text-accent-teal uppercase tracking-wider">Premium Member</p>
 </div>
 </div>
@@ -112,6 +112,14 @@ export default function WorkerDashboard() {
 <button onClick={() => router.push('/analytics')} className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 transition-colors text-left font-semibold">
 <BarChart3 className="w-5 h-5" />
 <span>Analytics</span>
+</button>
+<button onClick={() => router.push('/forecast')} className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 transition-colors text-left font-semibold">
+<BarChart3 className="w-5 h-5" />
+<span>Forecast</span>
+</button>
+<button onClick={() => router.push('/algo-health')} className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 transition-colors text-left font-semibold">
+<BarChart3 className="w-5 h-5" />
+<span>Algo-Health</span>
 </button>
 <button onClick={() => router.push('/profile')} className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 transition-colors text-left font-semibold">
 <User className="w-5 h-5" />

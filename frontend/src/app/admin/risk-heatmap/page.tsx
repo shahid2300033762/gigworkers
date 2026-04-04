@@ -12,7 +12,7 @@ export default function RiskHeatmap() {
 <div className="size-8 flex items-center justify-center bg-primary rounded-lg text-white">
 <span className="material-symbols-outlined">shield_with_heart</span>
 </div>
-<h2 className="text-xl font-bold leading-tight tracking-tight">GigShield AI</h2>
+<h2 className="text-xl font-bold leading-tight tracking-tight">Vertex</h2>
 </div>
 <nav className="hidden md:flex items-center gap-8">
 <a className="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white text-sm font-medium transition-colors" href="#">Dashboard</a>

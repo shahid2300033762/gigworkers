@@ -22,7 +22,7 @@ function PayoutSuccessContent() {
               <div className="size-8 flex items-center justify-center bg-primary rounded-lg text-white">
                 <ShieldCheck className="w-5 h-5" />
               </div>
-              <h2 className="text-primary dark:text-slate-100 text-xl font-bold leading-tight tracking-tight">GigShield AI</h2>
+              <h2 className="text-primary dark:text-slate-100 text-xl font-bold leading-tight tracking-tight">Vertex</h2>
             </div><nav className="hidden md:flex items-center gap-8 ml-12">
               <button onClick={() => router.push('/')} className="text-primary dark:text-white font-bold text-sm border-b-2 border-primary dark:border-white pb-1 tracking-wide">Home</button>
               <button onClick={() => router.push('/claim')} className="text-slate-500 dark:text-slate-400 font-medium text-sm hover:text-primary dark:hover:text-white transition-colors tracking-wide">Claims</button>
@@ -98,7 +98,7 @@ function PayoutSuccessContent() {
             </div>
           </main>
           <footer className="py-8 px-6 text-center border-t border-slate-200 dark:border-slate-800">
-            <p className="text-slate-400 dark:text-slate-500 text-xs">© 2024 GigShield AI. All payouts are secured and verified by our automated claim engine.</p>
+            <p className="text-slate-400 dark:text-slate-500 text-xs">© 2026 Vertex. All payouts are secured and verified by our automated claim engine.</p>
           </footer>
         </div>
       </div>

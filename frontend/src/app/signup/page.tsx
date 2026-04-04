@@ -92,7 +92,7 @@ export default function SignupPage() {
                         <Shield className="text-white w-8 h-8" />
                     </div>
                     <h1 className="text-3xl font-black tracking-tight">Create an Account</h1>
-                    <p className="text-slate-500 mt-2 text-center">Join GigShield AI for premium parametric protection.</p>
+                    <p className="text-slate-500 mt-2 text-center">Join Vertex for premium parametric protection.</p>
                 </div>
 
                 <div className="glass-card bg-white/70 backdrop-blur-xl rounded-2xl p-8 shadow-2xl shadow-primary/5 border border-white">

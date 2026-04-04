@@ -6,14 +6,12 @@ yarn-error.log*
 .pnp
 .pnp.js
 
-# Env files completely ignored
+# Environment files (NEVER commit)
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
-*.env
-*.env.*
 **/.env
 **/.env.*
 
@@ -23,10 +21,15 @@ out/
 build/
 dist/
 
+# Python
+__pycache__/
+venv/
+*.pyc
+
 # Vercel
 .vercel
 
-# Editor directories and files
+# Editor
 .idea
 .vscode
 *.suo
@@ -36,12 +39,10 @@ dist/
 *.sw?
 .DS_Store
 
-# Temporary and log files
+# Logs
 *.log
+
+# Temporary/debug files
 tmp_*
-reload_cache_temp.js
-debug_schema.js
-fix*.js
-convert.js
-supabase_schema.sql
-*.txt
+stitch-page.html
+stitch_*.html

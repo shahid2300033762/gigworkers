@@ -12,7 +12,7 @@ export default function FraudWatch() {
 <div className="size-8 flex items-center justify-center bg-primary rounded-lg text-white">
 <span className="material-symbols-outlined">shield</span>
 </div>
-<h2 className="text-primary dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em]">GigShield AI</h2>
+<h2 className="text-primary dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em]">Vertex</h2>
 </div>
 <label className="flex flex-col min-w-40 h-10 max-w-64">
 <div className="flex w-full flex-1 items-stretch rounded-xl h-full">
@@ -312,7 +312,7 @@ export default function FraudWatch() {
 <div className="flex flex-col md:flex-row items-center justify-between gap-6">
 <div className="flex items-center gap-3 text-slate-500">
 <span className="material-symbols-outlined text-[20px]">shield</span>
-<p className="text-sm font-medium">© 2024 GigShield AI Inc. Security Operations Center.</p>
+<p className="text-sm font-medium">© 2026 Vertex Inc. Security Operations Center.</p>
 </div>
 <div className="flex gap-6">
 <a className="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Privacy Policy</a>

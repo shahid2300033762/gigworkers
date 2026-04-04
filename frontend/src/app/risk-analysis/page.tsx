@@ -89,7 +89,7 @@ function RiskAnalysisContent() {
                             <ShieldCheck className="w-6 h-6" />
                         </div>
                         <div>
-                            <h2 className="text-lg font-bold leading-tight tracking-tight text-primary dark:text-slate-100">GigShield AI</h2>
+                            <h2 className="text-lg font-bold leading-tight tracking-tight text-primary dark:text-slate-100">Vertex</h2>
                             <p className="text-xs font-medium text-slate-500 uppercase tracking-widest">Premium Tier</p>
                         </div>
                     </div>
@@ -186,7 +186,7 @@ function RiskAnalysisContent() {
                                     <div className="flex flex-col justify-center space-y-4">
                                         <h3 className="text-lg font-bold text-primary">AI Insights</h3>
                                         <p className="text-sm text-slate-600 leading-relaxed">
-                                            Our AI detected a <span className="font-bold text-primary">12% increase</span> in regional {platform === 'Swiggy' ? 'Swiggy' : 'platform'} volatility over the last 24 hours. Weather parameters in <span className="font-bold">{selectedCity}</span> are trending higher than seasonal averages.
+                                            Our AI detected a <span className="font-bold text-primary">12% increase</span> in regional {platform === 'Swiggy' ? 'Swiggy' : 'platform'} volatility. <span className="font-bold text-orange-600">Traffic Density: High (8.4/10)</span> and <span className="font-bold text-blue-600">Platform Saturation: 92%</span> in <span className="font-bold">{selectedCity}</span>.
                                         </p>
                                         <div className="space-y-3 pt-2">
                                             <div className="flex items-center justify-between text-xs font-bold">

@@ -14,7 +14,7 @@ export const generateTransactionHistoryPDF = (transactions: any[]) => {
   // Branding
   doc.setFontSize(22);
   doc.setTextColor(0, 82, 255); // #0052FF
-  doc.text('GigShield AI', 14, 22);
+  doc.text('Vertex', 14, 22);
   
   doc.setFontSize(12);
   doc.setTextColor(100);
@@ -62,7 +62,7 @@ export const generatePremiumBreakdownPDF = (details: {
   // Branding
   doc.setFontSize(22);
   doc.setTextColor(0, 82, 255);
-  doc.text('GigShield AI', 14, 22);
+  doc.text('Vertex', 14, 22);
   
   doc.setFontSize(14);
   doc.setTextColor(0);

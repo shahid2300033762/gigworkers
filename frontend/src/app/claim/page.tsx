@@ -123,7 +123,7 @@ export default function ClaimPayoutFlow() {
 <div className="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
 <ShieldCheck className="w-5 h-5" />
 </div>
-<h2 className="text-lg font-bold leading-tight tracking-tight">GigShield AI</h2>
+<h2 className="text-lg font-bold leading-tight tracking-tight">Vertex</h2>
 </div>
 <div className="flex flex-1 justify-end gap-4">
 <div className="flex gap-2">
@@ -299,11 +299,11 @@ export default function ClaimPayoutFlow() {
 <div className="border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 p-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
 <div>
 <p className="text-slate-500 dark:text-slate-500 mb-1">Transaction ID</p>
-<p className="font-mono font-medium">#TXN-88291032</p>
+<p className="font-mono font-medium">#{`VTX-${Date.now().toString(36).toUpperCase()}`}</p>
 </div>
 <div>
 <p className="text-slate-500 dark:text-slate-500 mb-1">Date &amp; Time</p>
-<p className="font-medium">Oct 12, 2023 • 04:35 PM</p>
+<p className="font-medium">{new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} • {new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}</p>
 </div>
 <div>
 <p className="text-slate-500 dark:text-slate-500 mb-1">Coverage Type</p>
@@ -312,7 +312,7 @@ export default function ClaimPayoutFlow() {
 <div>
 <p className="text-slate-500 dark:text-slate-500 mb-1">Status</p>
 <p className="font-medium text-green-600 flex items-center gap-1">
-<span className="size-2 rounded-full bg-green-600"></span> Completed
+<span className="size-2 rounded-full bg-green-600"></span> {isEligible ? "Ready" : cooldownRemaining ? "Cooldown" : "Ineligible"}
                             </p>
 </div>
 </div>

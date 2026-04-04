@@ -1,7 +1,7 @@
 {
     "name": "backend",
     "version": "1.0.0",
-    "description": "GigShield AI Backend",
+    "description": "Vertex Backend",
     "main": "server.js",
     "scripts": {
         "start": "node server.js"

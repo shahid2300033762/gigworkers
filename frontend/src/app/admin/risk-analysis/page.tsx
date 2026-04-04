@@ -10,7 +10,7 @@ export default function RiskAnalysis() {
 <div className="flex items-center gap-8">
 <div className="flex items-center gap-3 text-primary">
 <span className="material-symbols-outlined text-3xl font-bold">shield_with_heart</span>
-<h2 className="text-primary text-xl font-bold leading-tight tracking-tight">GigShield AI</h2>
+<h2 className="text-primary text-xl font-bold leading-tight tracking-tight">Vertex</h2>
 </div>
 <div className="hidden md:flex items-center gap-2">
 <div className="flex items-stretch rounded-lg bg-slate-100 h-10 w-64 border border-slate-200">
@@ -326,7 +326,7 @@ export default function RiskAnalysis() {
 </div>
 <footer className="mt-auto border-t border-slate-200 py-6 px-6 lg:px-20 bg-white">
 <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-<p className="text-slate-400 text-xs font-bold uppercase tracking-widest">© 2024 GigShield AI Risk Systems</p>
+<p className="text-slate-400 text-xs font-bold uppercase tracking-widest">© 2026 Vertex Risk Systems</p>
 <div className="flex gap-6">
 <a className="text-slate-400 hover:text-primary text-xs font-bold uppercase tracking-widest transition-colors" href="#">Security Audit</a>
 <a className="text-slate-400 hover:text-primary text-xs font-bold uppercase tracking-widest transition-colors" href="#">API Documentation</a>

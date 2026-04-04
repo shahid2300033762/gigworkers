@@ -72,7 +72,7 @@ export default function AnalyticsPage() {
             <div className="bg-primary p-1.5 rounded-lg">
               <ShieldCheck className="text-white w-6 h-6" />
             </div>
-            <span className="text-xl font-extrabold tracking-tight text-primary">GigShield AI</span>
+            <span className="text-xl font-extrabold tracking-tight text-primary">Vertex</span>
           </div>
           <div className="hidden md:flex items-center gap-10">
             <button onClick={() => router.push('/')} className="text-sm font-semibold hover:text-accent-teal transition-colors">Home</button>
@@ -258,9 +258,9 @@ export default function AnalyticsPage() {
             <div className="bg-primary p-1 rounded-lg">
               <ShieldCheck className="text-white w-5 h-5" />
             </div>
-            <span className="text-lg font-black tracking-tight text-primary">GigShield AI</span>
+            <span className="text-lg font-black tracking-tight text-primary">Vertex</span>
           </div>
-          <p className="text-sm text-primary/40 font-medium tracking-tight">© 2024 GigShield AI. Powered by localized radar oracles.</p>
+          <p className="text-sm text-primary/40 font-medium tracking-tight">© 2026 Vertex. Powered by localized radar oracles.</p>
           <div className="flex gap-4">
             <button onClick={() => router.push('/support')} className="text-xs font-bold uppercase tracking-widest text-primary/40 hover:text-primary transition-colors">Support</button>
             <button className="text-xs font-bold uppercase tracking-widest text-primary/40 hover:text-primary transition-colors">Privacy</button>

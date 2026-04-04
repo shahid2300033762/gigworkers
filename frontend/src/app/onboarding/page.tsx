@@ -191,7 +191,7 @@ export default function WorkerOnboarding() {
             <div className="bg-primary p-1.5 rounded-lg text-white flex items-center justify-center">
               <ShieldCheck className="w-6 h-6" />
             </div>
-            <h2 className="text-primary text-xl font-bold tracking-tight">GigShield AI</h2>
+            <h2 className="text-primary text-xl font-bold tracking-tight">Vertex</h2>
           </div>
           <div className="flex items-center gap-4">
             <span className="text-slate-500 text-sm font-medium hidden sm:block">Support</span>
@@ -328,7 +328,7 @@ export default function WorkerOnboarding() {
                 <Info className="text-primary mt-1 shrink-0 w-6 h-6" />
                 <div className="text-sm text-slate-700 leading-relaxed">
                   <p className="font-medium text-primary mb-1">Secure AI Processing</p>
-                  Your data is encrypted with bank-grade security and processed by GigShield AI to ensure immediate activation of your premium benefits.
+                  Your data is encrypted with bank-grade security and processed by Vertex to ensure immediate activation of your premium benefits.
                 </div>
               </div>
               <div className="pt-6 flex flex-col-reverse sm:flex-row items-center justify-between gap-4">
@@ -375,7 +375,7 @@ export default function WorkerOnboarding() {
           </div>
         </main>
         <footer className="py-6 px-10 text-center text-slate-400 text-xs">
-          © 2024 GigShield AI Inc. All rights reserved. Professional worker protection worldwide.
+          © 2026 Vertex Inc. All rights reserved. Professional worker protection worldwide.
         </footer>
       </div>
     </div>

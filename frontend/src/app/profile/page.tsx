@@ -77,7 +77,7 @@ export default function ProfilePage() {
                         <div className="bg-primary p-1.5 rounded-lg">
                             <Shield className="text-white w-6 h-6" />
                         </div>
-                        <span className="text-xl font-extrabold tracking-tight text-primary">GigShield AI</span>
+                        <span className="text-xl font-extrabold tracking-tight text-primary">Vertex</span>
                     </div>
                     <div className="hidden md:flex items-center gap-10">
                         <button onClick={() => router.push('/')} className="text-sm font-semibold hover:text-accent-teal transition-colors text-slate-500">Home</button>

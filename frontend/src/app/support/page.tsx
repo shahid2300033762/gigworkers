@@ -81,7 +81,7 @@ export default function SupportPage() {
                         <div className="size-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20">
                             <ShieldCheck className="w-6 h-6" />
                         </div>
-                        <h2 className="text-xl font-bold tracking-tight">GigShield AI <span className="text-slate-400 font-medium">| Support</span></h2>
+                        <h2 className="text-xl font-bold tracking-tight">Vertex <span className="text-slate-400 font-medium">| Support</span></h2>
                     </div>
                 </header>
 
@@ -108,7 +108,7 @@ export default function SupportPage() {
                                 </div>
                                 <h1 className="text-4xl font-black mb-4 tracking-tight">How can we help you today?</h1>
                                 <p className="text-blue-100 font-medium max-w-lg mb-10 leading-relaxed">
-                                    Search our documentation or browse categories below to find everything you need about GigShield AI.
+                                    Search our documentation or browse categories below to find everything you need about Vertex.
                                 </p>
 
                                 <div className="w-full max-w-2xl relative">
