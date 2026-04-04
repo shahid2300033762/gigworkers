@@ -13,7 +13,8 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 **/.env
-**/.env.*
+# Allow .env.example files for documentation
+!**/.env.example
 
 # Next.js build output
 .next/
