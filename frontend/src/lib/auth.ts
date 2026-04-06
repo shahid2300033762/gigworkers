@@ -16,6 +16,7 @@ export async function getAccessToken() {
 }
 
 export async function apiFetch(input: string, init: RequestInit = {}) {
+  const backendUrl = process.env.NEXT_PUBLIC_API_URL || "";
   const accessToken = await getAccessToken();
   const headers = new Headers(init.headers || {});
 
@@ -27,7 +28,10 @@ export async function apiFetch(input: string, init: RequestInit = {}) {
     headers.set("Authorization", `Bearer ${accessToken}`);
   }
 
-  return fetch(input, {
+  // Ensure relative paths are prepended with the backend URL
+  const url = input.startsWith("http") ? input : `${backendUrl}${input}`;
+
+  return fetch(url, {
     ...init,
     headers,
   });
