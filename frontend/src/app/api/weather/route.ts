@@ -72,14 +72,19 @@ export async function GET(request: Request) {
       riskLevel = "Critical"; // Thunderstorm
     } else if (weatherId >= 502 && weatherId <= 504) {
       riskLevel = "High"; // Heavy / Extreme Rain
-    } else if ((weatherId >= 500 && weatherId <= 501) || (weatherId >= 520 && weatherId <= 531)) {
-      riskLevel = "Medium"; // Moderate Rain / Showers
+    } else if ((weatherId >= 500 && weatherId <= 501) || 
+               (weatherId >= 520 && weatherId <= 531) ||
+               (weatherId >= 300 && weatherId <= 321) ||
+               weatherId === 511) {
+      riskLevel = "Medium"; // Moderate Rain / Showers / Drizzle / Freezing Rain
     } else if (weatherId >= 600 && weatherId <= 622) {
       riskLevel = "High"; // Snow
     } else if (weatherId === 781 || weatherId === 771) {
       riskLevel = "Critical"; // Tornado or Squalls
-    } else if (rainVolume > 10) { // More than 10mm rain
+    } else if (rainVolume > 10) {
       riskLevel = "High";
+    } else if (rainVolume > 0) {
+      riskLevel = "Medium";
     }
 
     return NextResponse.json(

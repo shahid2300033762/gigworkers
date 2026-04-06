@@ -54,7 +54,8 @@ export default function PayoutHistory() {
                 const res = await apiFetch(`/api/worker-dashboard/${user.id}`);
                 if (res.ok) {
                     const json = await res.json();
-                    const claims = json.data.recent_claims || [];
+                    console.log("DEBUG: History Dashboard JSON:", json);
+                    const claims = json.data?.recent_claims || [];
                     
                     // Map Claims to display format
                     const mappedHistory = claims.map((claim: any) => {

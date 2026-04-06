@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
+const fetch = require("node-fetch");
 const { createClient } = require("@supabase/supabase-js");
 
 const app = express();
@@ -46,22 +47,6 @@ app.get("/api/health", (_req, res) => {
   res.json({ status: "ok", message: "Backend is running" });
 });
 
-// Helper: Fetch current risk level from OpenWeather for a city
-async function getRealTimeRisk(city) {
-  const apiKey = process.env.OPENWEATHER_API_KEY;
-  if (!apiKey) return "Low";
-  try {
-    const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric`);
-    if (!res.ok) return "Low";
-    const data = await res.json();
-    const id = data.weather?.[0]?.id || 800;
-    if (id >= 200 && id <= 232) return "Critical";
-    if (id >= 502 && id <= 504) return "High";
-    if ((id >= 500 && id <= 501) || (id >= 520 && id <= 531)) return "Medium";
-    if (id >= 600 && id <= 622) return "High";
-    return "Low";
-  } catch { return "Low"; }
-}
 
 function getBearerToken(req) {
   const header = req.headers.authorization || "";
@@ -183,8 +168,10 @@ function normalizeClaimPayload(body) {
     : isNonEmptyString(body.disruption_type)
       ? body.disruption_type.trim()
       : "";
+  
+  // payout_amount is calculated internally by the backend, so it's optional from the client.
   const payoutAmount =
-    typeof body.payout_amount === "number" ? body.payout_amount : Number(body.payout_amount);
+    typeof body.payout_amount === "number" ? body.payout_amount : Number(body.payout_amount || 0);
 
   if (policyId && !isUuid(policyId)) {
     throw new Error("policy_id must be a valid UUID.");
@@ -194,14 +181,11 @@ function normalizeClaimPayload(body) {
     throw new Error("trigger_type is required.");
   }
 
-  if (!isPositiveNumber(payoutAmount)) {
-    throw new Error("payout_amount must be a positive number.");
-  }
-
   return {
     policy_id: policyId,
-    disruption_type: triggerType,
-    payout_amount: payoutAmount,
+    trigger_type: triggerType,
+    disruption_type: triggerType, // Added for frontend compatibility
+    payout_amount: isNaN(payoutAmount) ? 0 : payoutAmount,
   };
 }
 
@@ -329,7 +313,7 @@ async function getRealTimeRisk(city) {
 
   try {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric`;
-    console.log(`DEBUG: Checking weather for ${city} at ${url}`);
+    console.log(`DEBUG: Checking risk for ${city} at ${url}`);
     
     const res = await fetch(url);
     if (!res.ok) {
@@ -343,17 +327,34 @@ async function getRealTimeRisk(city) {
 
     console.log(`DEBUG: ${city} Weather ID: ${weatherId}, Rain Volume: ${rainVolume}mm`);
 
+    // 2xx: Thunderstorm
     if (weatherId >= 200 && weatherId <= 232) return "Critical"; 
+    
+    // 502-504: Heavy/Extreme Rain
     if (weatherId >= 502 && weatherId <= 504) return "High";
-    if ((weatherId >= 500 && weatherId <= 501) || (weatherId >= 520 && weatherId <= 531)) return "Medium";
+    
+    // 500-501 (Light/Mod Rain), 511 (Freezing Rain), 520-531 (Showers), 3xx (Drizzle)
+    if ((weatherId >= 500 && weatherId <= 501) || 
+        (weatherId >= 520 && weatherId <= 531) || 
+        (weatherId >= 300 && weatherId <= 321) ||
+        weatherId === 511) {
+      return "Medium";
+    }
+    
+    // 6xx: Snow
     if (weatherId >= 600 && weatherId <= 622) return "High";
+    
+    // 781, 771: Tornado/Squalls
     if (weatherId === 781 || weatherId === 771) return "Critical";
+
+    // Rainfall volume threshold
     if (rainVolume > 10) return "High";
+    if (rainVolume > 0) return "Medium";
 
     return "Low";
   } catch (err) {
-    console.error("DEBUG: Weather check exception for " + city + ":", err);
-    return "Low"; // Absolute strict on error
+    console.error(`DEBUG: Weather check exception for ${city}:`, err);
+    return "Low";
   }
 }
 
@@ -429,10 +430,12 @@ app.post("/api/trigger-claim", authenticateRequest, async (req, res) => {
     }
 
     // 4. Calculate Payout based on Realistic Insurance Rules
-    // Risk Multipliers: Low (0), Medium (0.4), High (0.7)
+    // Payout Multipliers based on Risk Level (matched to frontend expectations)
     let riskMultiplier = 0;
-    if (currentRisk === "Medium") riskMultiplier = 0.4;
-    else if (currentRisk === "High" || currentRisk === "Critical") riskMultiplier = 0.7;
+    if (currentRisk === "Critical") riskMultiplier = 1.0;    // ₹3000
+    else if (currentRisk === "High") riskMultiplier = 0.5;   // ₹1500
+    else if (currentRisk === "Medium") riskMultiplier = 0.245; // ₹735
+    else if (currentRisk === "Low") riskMultiplier = 0;
 
     // Plan Weight: Starter (0.7), Pro (0.9), Elite (1.0)
     let planWeight = 1.0;
@@ -461,6 +464,7 @@ app.post("/api/trigger-claim", authenticateRequest, async (req, res) => {
         .insert({
           policy_id: policy.id,
           worker_id: req.authUser.id,
+          trigger_type: payload.trigger_type || "Environmental",
           disruption_type: payload.disruption_type || "Environmental",
           payout_amount: calculatedPayout,
           status: "processed",
@@ -476,6 +480,7 @@ app.post("/api/trigger-claim", authenticateRequest, async (req, res) => {
     res.status(200).json({
       success: true,
       claim: claimData,
+      claim_id: claimData?.id, // Flattened for frontend
       calculated_amount: calculatedPayout,
       risk_level: currentRisk,
       message: calculatedPayout > 0 
