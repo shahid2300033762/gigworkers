@@ -39,11 +39,12 @@
 - ✅ GPS location validation
 - ✅ CORS configuration
 
-### **AI Service (Python Flask)**
-- ✅ Risk score calculation endpoint
-- ✅ Deactivation risk analysis
-- ✅ CORS enabled
-- ✅ Environment variable configuration
+### **AI Service (Python Flask + ML)**
+- ✅ **ML Risk Scoring**: Integrated `risk_model.pkl` for data-driven premiums.
+- ✅ **Fraud Anomaly Detection**: `anomaly_model.pkl` for suspicious pattern spotting.
+- ✅ **Trigger Classification**: `trigger_classifier.pkl` for claim validation.
+- ✅ **CORS enabled**
+- ✅ **Environment variable configuration**
 
 ### **Database (Supabase)**
 - ✅ Complete schema defined
