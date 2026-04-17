@@ -6,9 +6,11 @@ Vertex is a comprehensive parametric insurance platform tailored specifically fo
 
 ### For Gig Workers
 * **Fast Onboarding**: Direct signup and profile completion integrated tightly with real-time risk assessment.
-* **Premium Calculations**: Risk scores are dynamically determined based on the user's city and delivery platform, combined with an AI service fallback heuristic.
-* **Automated Claims (Parametric Triggers)**: Workers can simulate or automatically trigger claims based on parametric events (like "Heavy Rain"). No more waiting for manual approvals.
-* **Modern Dashboard**: A beautiful, glassmorphism-inspired, responsive Next.js frontend where workers can view their current active policies, payouts, claims history, and profile updates.
+* **Premium Calculations**: Risk scores are dynamically determined using machine learning models (`risk_model.pkl`) analyzing regional risk factors and platform data.
+* **Automated Claims (Parametric Triggers)**: Workers can trigger claims based on verified parametric events (like "Heavy Rain"). Claims are validated via an ML-powered trigger classifier.
+* **Modern Dashboard**: A beautiful, glassmorphism-inspired interface where workers can view policies, payouts, claims history, and real-time notifications.
+* **Real-time Notifications**: Integrated notification engine for claim status updates, premium alerts, and system announcements.
+* **Multi-Layered Fraud Detection**: Production-ready fraud engine combining anomaly detection (`anomaly_model.pkl`), threshold analysis, and historical verification.
 
 ### For Administrators
 * **Analytics Dashboard**: Admins can get a bird's-eye view of active policies, total processed claims, and detect potential fraud anomalies.
@@ -34,7 +36,8 @@ The platform is split into specialized microservices and frontend applications f
   * Main tables: `Workers`, `Policies`, and `Claims`.
 
 * **AI Service (`/ai-service`)**:
-  * Standalone Python backend for processing external factors to finalize a localized parametric risk score.
+  * Python-based microservice for ML risk inference, fraud anomaly detection, and trigger classification.
+  * Utilizes Scikit-learn models (`.pkl`) for real-time risk assessment.
 
 ## 📦 Project Structure
 
@@ -77,7 +80,7 @@ PORT=3001
 ## 🚦 Getting Started
 
 ### 1. Database Setup
-Execute the `supabase_schema.sql` into your Supabase SQL editor to create the `Workers`, `Policies`, and `Claims` tables alongside the appropriate Row Level Security (RLS) policies.
+Execute `supabase_schema.sql` for the initial structure, then apply `migration_v2.sql` to enable notifications and fraud detection logs. Apply these in your Supabase SQL editor.
 
 ### 2. Backend Server
 Navigate to the `backend/` directory, install packages, and start the development server:
