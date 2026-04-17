@@ -1,16 +1,18 @@
 "use client";
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ShieldCheck, Bell, User, LayoutDashboard, FileText, History, CloudRain, CheckCircle, Receipt, ArrowRight, Loader2, Home, BarChart3 } from 'lucide-react';
+import { ShieldCheck, Bell, User, LayoutDashboard, FileText, History, CloudRain, CheckCircle, Receipt, ArrowRight, Loader2, Home, BarChart3, Shield, Zap, AlertTriangle } from 'lucide-react';
 import { apiFetch } from '@/lib/auth';
 import { getCurrentUser } from '@/lib/worker';
 
 export default function ClaimPayoutFlow() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [riskData, setRiskData] = useState<{ risk_level: string, policy: any, city: string, last_claim_at?: string } | null>(null);
+  const [riskData, setRiskData] = useState<{ risk_level: string, policy: any, city: string, last_claim_at?: string, trigger_probabilities?: Record<string, number>, weather_details?: any } | null>(null);
   const [fetching, setFetching] = useState(true);
   const [cooldownRemaining, setCooldownRemaining] = useState<string | null>(null);
+  const [selectedTrigger, setSelectedTrigger] = useState('Heavy Rain');
+  const [claimResult, setClaimResult] = useState<{ fraud_score?: number, fraud_check?: any, calculated_amount?: number } | null>(null);
 
   React.useEffect(() => {
     async function init() {
@@ -96,11 +98,13 @@ export default function ClaimPayoutFlow() {
       const res = await apiFetch('/api/trigger-claim', {
         method: 'POST',
         body: JSON.stringify({
-          disruption_type: 'Heavy Rain'
+          disruption_type: selectedTrigger,
+          trigger_type: selectedTrigger,
         })
       });
       const data = await res.json();
       if (data.success) {
+        setClaimResult(data);
         router.push(`/payout?amount=${data.calculated_amount}&claimId=${data.claim_id}`);
       } else {
         alert(data.error);
@@ -208,6 +212,79 @@ export default function ClaimPayoutFlow() {
     </div>
   </div>
 ) : null}
+
+{/* Multi-Trigger Type Selector */}
+{riskData && riskData.risk_level !== 'Low' && !cooldownRemaining && (
+  <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+    <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
+      <Zap className="w-4 h-4 text-amber-500" />
+      Select Trigger Type
+    </h3>
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+      {[
+        { key: 'Heavy Rain', label: 'Weather', icon: '🌧️', prob: riskData.trigger_probabilities?.weather },
+        { key: 'Demand Surge', label: 'Demand Surge', icon: '📈', prob: riskData.trigger_probabilities?.demand_surge },
+        { key: 'Platform Outage', label: 'Platform Outage', icon: '⚠️', prob: riskData.trigger_probabilities?.platform_outage },
+        { key: 'Traffic Disruption', label: 'Traffic', icon: '🚦', prob: riskData.trigger_probabilities?.traffic_disruption },
+        { key: 'Heatwave', label: 'Heatwave', icon: '🔥', prob: riskData.trigger_probabilities?.heatwave },
+      ].map(trigger => (
+        <button
+          key={trigger.key}
+          onClick={() => setSelectedTrigger(trigger.key)}
+          className={`p-3 rounded-xl border text-left transition-all ${
+            selectedTrigger === trigger.key
+              ? 'border-primary bg-primary/5 shadow-sm'
+              : 'border-slate-200 hover:border-primary/20'
+          }`}
+        >
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-lg">{trigger.icon}</span>
+            <span className="text-xs font-bold">{trigger.label}</span>
+          </div>
+          {trigger.prob !== undefined && (
+            <div className="flex items-center gap-1">
+              <div className="h-1 flex-1 bg-slate-100 rounded-full overflow-hidden">
+                <div className="h-full bg-primary rounded-full" style={{ width: `${Math.round(trigger.prob * 100)}%` }} />
+              </div>
+              <span className="text-[10px] font-bold text-slate-400">{Math.round(trigger.prob * 100)}%</span>
+            </div>
+          )}
+        </button>
+      ))}
+    </div>
+    {riskData.trigger_probabilities && (
+      <p className="text-[10px] text-slate-400 mt-2 italic">Probabilities computed by ML Trigger Classifier (Random Forest)</p>
+    )}
+  </div>
+)}
+
+{/* Fraud Score Transparency */}
+{claimResult?.fraud_check && (
+  <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-4 shadow-sm">
+    <div className="flex items-center justify-between">
+      <div className="flex items-center gap-2">
+        <Shield className="w-4 h-4 text-green-600" />
+        <span className="text-sm font-bold">Claim Confidence</span>
+      </div>
+      <span className={`text-lg font-black ${
+        claimResult.fraud_check.claim_confidence > 80 ? 'text-green-600' :
+        claimResult.fraud_check.claim_confidence > 50 ? 'text-yellow-600' : 'text-red-600'
+      }`}>
+        {claimResult.fraud_check.claim_confidence}%
+      </span>
+    </div>
+    <div className="mt-2 h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+      <div
+        className={`h-full rounded-full transition-all ${
+          claimResult.fraud_check.claim_confidence > 80 ? 'bg-green-500' :
+          claimResult.fraud_check.claim_confidence > 50 ? 'bg-yellow-500' : 'bg-red-500'
+        }`}
+        style={{ width: `${claimResult.fraud_check.claim_confidence}%` }}
+      />
+    </div>
+    <p className="text-[10px] text-slate-400 mt-1">Verified by ML Anomaly Detection (Isolation Forest)</p>
+  </div>
+)}
 
 <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
 <h3 className="text-lg font-bold mb-8">Parametric Trigger Process</h3>

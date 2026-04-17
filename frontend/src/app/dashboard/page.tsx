@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { ShieldCheck, LayoutDashboard, Shield, FileText, Wallet, Headset, Loader2, History, Plus, AlertTriangle, ArrowRight, TrendingUp, Download, MoreHorizontal, Car, Coffee, Briefcase, BarChart3, User, Home, LogOut } from 'lucide-react';
+import { ShieldCheck, LayoutDashboard, Shield, FileText, Wallet, Headset, Loader2, History, Plus, AlertTriangle, ArrowRight, TrendingUp, Download, MoreHorizontal, Car, Coffee, Briefcase, BarChart3, User, Home, LogOut, Bell } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { apiFetch } from '@/lib/auth';
 
@@ -13,6 +13,7 @@ export default function WorkerDashboard() {
   const [weatherData, setWeatherData] = useState<any>(null);
   const [premiumData, setPremiumData] = useState<any>(null);
   const [recentClaims, setRecentClaims] = useState<any[]>([]);
+  const [unreadNotifications, setUnreadNotifications] = useState(0);
 
   useEffect(() => {
     async function checkAuth() {
@@ -49,7 +50,8 @@ export default function WorkerDashboard() {
             const dashboardRes = await apiFetch(`/api/worker-dashboard/${user.id}`);
             if (dashboardRes.ok) {
               const dashboardJson = await dashboardRes.json();
-              setRecentClaims(dashboardJson.recentClaims || []);
+              setRecentClaims(dashboardJson.data?.recent_claims || dashboardJson.recentClaims || []);
+              setUnreadNotifications(dashboardJson.data?.unread_notifications || 0);
             }
           }
           
@@ -121,6 +123,13 @@ export default function WorkerDashboard() {
 <BarChart3 className="w-5 h-5" />
 <span>Algo-Health</span>
 </button>
+<button onClick={() => router.push('/notifications')} className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 transition-colors text-left font-semibold">
+<Bell className="w-5 h-5" />
+<span>Notifications</span>
+{unreadNotifications > 0 && (
+  <span className="ml-auto bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">{unreadNotifications}</span>
+)}
+</button>
 <button onClick={() => router.push('/profile')} className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-50 transition-colors text-left font-semibold">
 <User className="w-5 h-5" />
 <span>Profile</span>
@@ -159,6 +168,12 @@ export default function WorkerDashboard() {
 <p className="text-slate-500">Welcome back, your earnings are currently being protected in real-time.</p>
 </div>
 <div className="flex gap-3">
+<button onClick={() => router.push('/notifications')} className="relative flex items-center justify-center size-10 rounded-xl border thin-border bg-white hover:shadow-sm transition-all">
+<Bell className="w-5 h-5 text-slate-600" />
+{unreadNotifications > 0 && (
+  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[9px] font-bold min-w-[18px] h-[18px] flex items-center justify-center rounded-full">{unreadNotifications}</span>
+)}
+</button>
 <button onClick={() => router.push('/history')} className="flex items-center gap-2 px-5 py-2.5 rounded-xl border thin-border bg-white font-semibold text-sm hover:shadow-sm transition-all">
 <History className="w-4 h-4" />
                         Activity
